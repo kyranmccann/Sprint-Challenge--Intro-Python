@@ -10,6 +10,8 @@ class City:
 
     def __repr__(self):
         return f"City: {self.name} At: {self.lat}, {self.lon}"
+
+
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
 #
@@ -23,6 +25,7 @@ class City:
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
 cities = []
+
 
 def cityreader(cities=[]):
     import csv
@@ -69,13 +72,22 @@ for c in cities:
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
+lat1, lon1 = input("Enter first lat, lon coordinate: ").split(",")
+lat2, lon2 = input("Enter second lat, lon coordinate: ").split(",")
+
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
-  # within will hold the cities that fall within the specified region
-  within = []
+    # within will hold the cities that fall within the specified region
+    within = []
 
-  # TODO Ensure that the lat and lon valuse are all floats
-  # Go through each city and check to see if it falls within
-  # the specified coordinates.
+    lat = [float(lat1), float(lat2)]
+    lon = [float(lon1), float(lon2)]
 
-  return within
+    lat.sort()
+    lon.sort()
+
+    for city in cities:
+        if lat[0] <= city.lat <= lat[1] and lon[0] <= city.lon <= lon[1]:
+            within.append(city)
+
+    return within
